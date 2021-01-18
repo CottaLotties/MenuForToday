@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml for add dish alert dialog-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/add_dialog_padding_large"
+    android:paddingRight="@dimen/add_dialog_padding_large"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/add_dialog_padding_large">
+
+    <EditText
+        android:id="@+id/dishName"
+        android:inputType="text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_dish_dialog_hint"
+        android:autofillHints="@string/add_dish_dialog_hint"
+        android:layout_margin="@dimen/add_dialog_margin" />
+
+    <RadioGroup
+        android:id="@+id/type"
+        android:hint="@string/add_dish_dialog_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/add_dialog_margin">
+
+        <RadioButton
+            android:id="@+id/type_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breakfast"
+            />
+        <RadioButton
+            android:id="@+id/type_salad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/salad"
+            />
+        <RadioButton
+            android:id="@+id/type_dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dinner"
+            />
+            <RadioButton
+                android:id="@+id/type_supper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/supper"
+                />
+            <RadioButton
+                android:id="@+id/type_dessert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dessert"
+                />
+            <RadioButton
+                android:id="@+id/type_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order"
+                />
+    </RadioGroup>
+</LinearLayout>

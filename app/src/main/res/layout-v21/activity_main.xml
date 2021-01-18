@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml for main activity that represents a menu advice-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_average"
+        android:fontFamily="casual"
+        android:text="@string/breakfast"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/design_default_color_primary">
+
+        <Button
+            android:id="@+id/breakfast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:padding="@dimen/margin_average"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_average"
+        android:fontFamily="casual"
+        android:text="@string/salad"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/design_default_color_primary">
+        <Button
+            android:id="@+id/salad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:padding="@dimen/margin_average"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_average"
+        android:fontFamily="casual"
+        android:text="@string/dinner"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/design_default_color_primary">
+        <Button
+            android:id="@+id/dinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:padding="@dimen/margin_average"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_average"
+        android:fontFamily="casual"
+        android:text="@string/supper"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/design_default_color_primary">
+        <Button
+            android:id="@+id/supper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:padding="@dimen/margin_average"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_average"
+        android:fontFamily="casual"
+        android:text="@string/dessert"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/design_default_color_primary">
+        <Button
+            android:id="@+id/dessert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:padding="@dimen/margin_average"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_average"
+        android:fontFamily="casual"
+        android:text="@string/order"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/design_default_color_primary">
+        <Button
+            android:id="@+id/order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:padding="@dimen/margin_average"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white" />
+    </RelativeLayout>
+</LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/add"
+        android:backgroundTint="@color/blue"
+        android:layout_margin="@dimen/margin_average"
+        android:contentDescription="@string/refresh_button"
+        app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/margin_average"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/blue"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:contentDescription="@string/add_button"/>
+</RelativeLayout>

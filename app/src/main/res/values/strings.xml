@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Menu for today</string>
+
+    <!-- strings for activity_main.xml -->
+    <string name="breakfast">Breakfast</string>
+    <string name="salad">Salad</string>
+    <string name="dinner">Dinner</string>
+    <string name="supper">Supper</string>
+    <string name="dessert">Dessert</string>
+    <string name="order">To order</string>
+
+    <string name="add_button">ADD</string>
+    <string name="refresh_button">REFRESH</string>
+
+    <!-- strings for add_dialog.xml -->
+    <string name="add_dish_dialog_hint">Dish</string>
+    <string name="add_dish_dialog_type">Type</string>
+</resources>

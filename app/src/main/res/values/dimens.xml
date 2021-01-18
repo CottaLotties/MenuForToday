@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_average">8dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="button_margin">1dp</dimen>
+
+    <dimen name="text_large">24sp</dimen>
+
+    <dimen name="add_dialog_padding_large">10dp</dimen>
+    <dimen name="add_dialog_margin">3dp</dimen>
+</resources>
