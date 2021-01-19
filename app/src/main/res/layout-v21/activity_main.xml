@@ -9,9 +9,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
@@ -195,6 +199,7 @@
             app:backgroundTint="@color/white" />
     </RelativeLayout>
 </LinearLayout>
+</ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/refresh"
