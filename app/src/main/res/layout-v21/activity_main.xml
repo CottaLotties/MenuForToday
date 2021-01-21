@@ -26,8 +26,7 @@
         android:fontFamily="casual"
         android:text="@string/breakfast"
         android:textColor="@color/design_default_color_primary"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+        android:textSize="@dimen/text_large" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -57,8 +56,7 @@
         android:fontFamily="casual"
         android:text="@string/salad"
         android:textColor="@color/design_default_color_primary"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+        android:textSize="@dimen/text_large" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -87,8 +85,7 @@
         android:fontFamily="casual"
         android:text="@string/dinner"
         android:textColor="@color/design_default_color_primary"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+        android:textSize="@dimen/text_large" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -117,8 +114,7 @@
         android:fontFamily="casual"
         android:text="@string/supper"
         android:textColor="@color/design_default_color_primary"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+        android:textSize="@dimen/text_large" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -147,8 +143,7 @@
         android:fontFamily="casual"
         android:text="@string/dessert"
         android:textColor="@color/design_default_color_primary"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+        android:textSize="@dimen/text_large" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -177,8 +172,7 @@
         android:fontFamily="casual"
         android:text="@string/order"
         android:textColor="@color/design_default_color_primary"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2" />
+        android:textSize="@dimen/text_large" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
