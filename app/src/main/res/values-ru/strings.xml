@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Меню на сегодня</string>
+
+    <!-- strings for activity_main.xml -->
+    <string name="breakfast">Завтрак</string>
+    <string name="salad">Салат</string>
+    <string name="dinner">Обед</string>
+    <string name="supper">Ужин</string>
+    <string name="dessert">Десерт</string>
+    <string name="order">На заказ</string>
+
+    <string name="add_button">ДОБАВИТЬ</string>
+    <string name="refresh_button">ОБНОВИТЬ</string>
+
+    <!-- strings for add_dialog.xml -->
+    <string name="add_dish_dialog_hint">Название блюда</string>
+    <string name="add_dish_dialog_type">Тип блюда</string>
+</resources>
