@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Меню на сегодня</string>
+    <string name="ok">Ок</string>
+    <string name="cancel">Отмена</string>
 
     <!-- strings for activity_main.xml -->
     <string name="breakfast">Завтрак</string>
@@ -13,6 +15,15 @@
     <string name="refresh_button">ОБНОВИТЬ</string>
 
     <!-- strings for add_dialog.xml -->
+    <string name="add_dish_dialog_title">Добавьте новое блюдо</string>
     <string name="add_dish_dialog_hint">Название блюда</string>
     <string name="add_dish_dialog_type">Тип блюда</string>
+    <string name="add_dish_dialog_warning_1">Введите название блюда, пожалуйста</string>
+    <string name="add_dish_dialog_warning_2">Введите название блюда и его тип, пожалуйста</string>
+
+    <!-- strings for ListActivity context menu -->
+    <string name="edit">Изменить</string>
+    <string name="delete">Удалить</string>
+    <string name="edit_dish_dialog_title">Блюдо</string>
+    <string name="edit_dish_dialog_warning">Напишите название блюда, пожалуйста</string>
 </resources>

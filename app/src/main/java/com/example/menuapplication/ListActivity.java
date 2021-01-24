@@ -67,8 +67,8 @@ public class ListActivity extends AppCompatActivity {
     // specific dish
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.add(0, v.getId(), 1,"Edit");
-        menu.add(0, v.getId(), 2,"Delete");
+        menu.add(0, v.getId(), 1, getString(R.string.edit));
+        menu.add(0, v.getId(), 2, getString(R.string.delete));
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
@@ -98,24 +98,24 @@ public class ListActivity extends AppCompatActivity {
     public void showAlertForDishChange(String dishName, long id){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText nameInput = new EditText(this);
-        builder.setTitle("Dish");
+        builder.setTitle(getString(R.string.edit_dish_dialog_title));
         builder.setView(nameInput);
         nameInput.setText(dishName);
         nameInput.setPadding(48,24,24,24);
 
-        builder.setPositiveButton("OK", (dialog, which) -> {
+        builder.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             if (!nameInput.getText().toString().equals("")) {
                 dishDao.setDish(nameInput.getText().toString(), id);
                 refresh();
                 checkIfChanged(dishName, id);
             }
             else{
-                Toast.makeText(getApplicationContext(),"Write the dish name, please",
+                Toast.makeText(getApplicationContext(), getString(R.string.edit_dish_dialog_warning),
                         Toast.LENGTH_LONG).show();
             }
         });
 
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton(getString(R.string.cancel), (dialog, which) -> dialog.dismiss());
 
         AlertDialog editDialog = builder.create();
         editDialog.show();

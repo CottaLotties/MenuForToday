@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Menu for today</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
 
     <!-- strings for activity_main.xml -->
     <string name="breakfast">Breakfast</string>
@@ -13,6 +15,15 @@
     <string name="refresh_button">REFRESH</string>
 
     <!-- strings for add_dialog.xml -->
+    <string name="add_dish_dialog_title">Add new dish</string>
     <string name="add_dish_dialog_hint">Dish</string>
     <string name="add_dish_dialog_type">Type</string>
+    <string name="add_dish_dialog_warning_1">Fill the name field, please</string>
+    <string name="add_dish_dialog_warning_2">Fill both name and type, please</string>
+
+    <!-- strings for ListActivity context menu -->
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="edit_dish_dialog_title">Dish</string>
+    <string name="edit_dish_dialog_warning">Write the dish name, please</string>
 </resources>

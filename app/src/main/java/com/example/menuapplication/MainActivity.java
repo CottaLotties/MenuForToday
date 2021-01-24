@@ -125,16 +125,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // show the dialog to add a new dish
     private void showAddDialog() {
         AlertDialog.Builder addDialogBuilder = new AlertDialog.Builder(this);
-        addDialogBuilder.setTitle("Add new dish");
+        addDialogBuilder.setTitle(getString(R.string.add_dish_dialog_title));
         // set a layout for the dialog
         View v = getLayoutInflater().inflate(R.layout.add_dialog, null);
         addDialogBuilder.setView(v);
 
-        addDialogBuilder.setPositiveButton("Ok", (arg0, arg1) -> {
+        addDialogBuilder.setPositiveButton(getString(R.string.ok), (arg0, arg1) -> {
             // check if the name of a dish is not empty
             String dishName = ((EditText) v.findViewById(R.id.dishName)).getText().toString();
             if (dishName.equals(""))Toast.makeText(getApplicationContext(),
-                    "Fill the name field, please", Toast.LENGTH_LONG).show();
+                    getString(R.string.add_dish_dialog_warning_1), Toast.LENGTH_LONG).show();
             else try {
                 // create a new dish to add to the database
                 Dish dish = new Dish();
@@ -146,12 +146,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dish.name = dishName;
                 dishDao.insert(dish);
             } catch (Exception e){
-                Toast.makeText(getApplicationContext(),"Fill both name and type, please",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.add_dish_dialog_warning_2), Toast.LENGTH_LONG).show();
             }
         });
 
-        addDialogBuilder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        addDialogBuilder.setNegativeButton(getString(R.string.cancel), (dialog, which) ->
+                dialog.dismiss());
 
         AlertDialog addDialog = addDialogBuilder.create();
         addDialog.show();
