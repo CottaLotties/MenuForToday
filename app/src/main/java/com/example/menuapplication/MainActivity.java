@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getString(R.string.dinner), getString(R.string.supper), getString(R.string.dessert),
                 getString(R.string.order)};
         for (int i=0; i<types.length; i++){
-            if (types[i].equals(type))dishType=i+1;
+            if (types[i].equals(type)) dishType=i+1;
         }
         return dishType;
     }
