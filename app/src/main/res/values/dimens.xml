@@ -8,4 +8,6 @@
 
     <dimen name="add_dialog_padding_large">10dp</dimen>
     <dimen name="add_dialog_margin">3dp</dimen>
+
+    <dimen name="edit_dialog_margin">12dp</dimen>
 </resources>

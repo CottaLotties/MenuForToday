@@ -8,9 +8,11 @@ import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,11 +99,19 @@ public class ListActivity extends AppCompatActivity {
     // show the dialog for editing the dish
     public void showAlertForDishChange(String dishName, long id){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         final EditText nameInput = new EditText(this);
+        FrameLayout container = new FrameLayout(this);
+        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin= (int)getResources().getDimension(R.dimen.edit_dialog_margin);
+        params.rightMargin= (int)getResources().getDimension(R.dimen.edit_dialog_margin);
+        nameInput.setLayoutParams(params);
+        container.addView(nameInput);
+
         builder.setTitle(getString(R.string.edit_dish_dialog_title));
-        builder.setView(nameInput);
+        builder.setView(container);
         nameInput.setText(dishName);
-        nameInput.setPadding(48,24,24,24);
 
         builder.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             if (!nameInput.getText().toString().equals("")) {
