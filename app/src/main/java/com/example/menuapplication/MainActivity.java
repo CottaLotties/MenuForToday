@@ -184,27 +184,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // getting dish type for creating and saving the new dish
     public int getDishType(String type){
-        int dishType;
-        switch (type) {
-            case "Salad":
-                dishType = 2;
-                break;
-            case "Dinner":
-                dishType = 3;
-                break;
-            case "Supper":
-                dishType = 4;
-                break;
-            case "Dessert":
-                dishType = 5;
-                break;
-            case "To order":
-                dishType = 6;
-                break;
-            case "Breakfast":
-            default:
-                dishType = 1;
-                break;
+        int dishType = 1; // default type: breakfast
+        String [] types = new String[]{getString(R.string.breakfast), getString(R.string.salad),
+                getString(R.string.dinner), getString(R.string.supper), getString(R.string.dessert),
+                getString(R.string.order)};
+        for (int i=0; i<types.length; i++){
+            if (types[i].equals(type))dishType=i+1;
         }
         return dishType;
     }
