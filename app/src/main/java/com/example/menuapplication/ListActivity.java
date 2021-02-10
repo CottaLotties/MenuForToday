@@ -42,6 +42,7 @@ public class ListActivity extends AppCompatActivity {
     public void refresh(){
         Intent mainIntent = getIntent(); // here we get the dish type from the intent
         type = mainIntent.getIntExtra("type", 1);
+        getSupportActionBar().setTitle(getTypeByDish()); // set the title for the dish list
 
         dishDao = App.getInstance().getDatabase().dishDao();
         list = dishDao.getByType(type);
@@ -148,18 +149,18 @@ public class ListActivity extends AppCompatActivity {
     public String getTypeByDish(){
         String dishType;
         switch (type){
-            case 2: dishType = "salad";
+            case 2: dishType = getString(R.string.salad);
                 break;
-            case 3: dishType = "dinner";
+            case 3: dishType = getString(R.string.dinner);
                 break;
-            case 4: dishType = "supper";
+            case 4: dishType = getString(R.string.supper);
                 break;
-            case 5: dishType = "dessert";
+            case 5: dishType = getString(R.string.dessert);
                 break;
-            case 6: dishType = "order";
+            case 6: dishType = getString(R.string.order);
                 break;
             case 1:
-            default: dishType = "breakfast";
+            default: dishType = getString(R.string.breakfast);
                 break;
         }
         return dishType;

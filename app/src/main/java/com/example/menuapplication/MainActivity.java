@@ -74,12 +74,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // method to show the last menu advice
     public void showLatestAdvice(){
         try {
-            ((Button) findViewById(R.id.breakfast)).setText(activeAdvice.getString("breakfast",""));
-            ((Button) findViewById(R.id.salad)).setText(activeAdvice.getString("salad",""));
-            ((Button) findViewById(R.id.dinner)).setText(activeAdvice.getString("dinner",""));
-            ((Button) findViewById(R.id.supper)).setText(activeAdvice.getString("supper",""));
-            ((Button) findViewById(R.id.dessert)).setText(activeAdvice.getString("dessert",""));
-            ((Button) findViewById(R.id.order)).setText(activeAdvice.getString("order",""));
+            ((Button) findViewById(R.id.breakfast))
+                    .setText(activeAdvice.getString(getString(R.string.breakfast),""));
+            ((Button) findViewById(R.id.salad))
+                    .setText(activeAdvice.getString(getString(R.string.salad),""));
+            ((Button) findViewById(R.id.dinner))
+                    .setText(activeAdvice.getString(getString(R.string.dinner),""));
+            ((Button) findViewById(R.id.supper))
+                    .setText(activeAdvice.getString(getString(R.string.supper),""));
+            ((Button) findViewById(R.id.dessert))
+                    .setText(activeAdvice.getString(getString(R.string.dessert),""));
+            ((Button) findViewById(R.id.order))
+                    .setText(activeAdvice.getString(getString(R.string.order),""));
         } catch(Exception e){}
     }
 
