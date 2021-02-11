@@ -55,12 +55,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void saveAdvice(){
         // here we save the menu advice in Shared Preferences
         SharedPreferences.Editor editor = activeAdvice.edit();
-        editor.putString("breakfast",((Button)findViewById(R.id.breakfast)).getText().toString());
-        editor.putString("salad",((Button)findViewById(R.id.salad)).getText().toString());
-        editor.putString("dinner",((Button)findViewById(R.id.dinner)).getText().toString());
-        editor.putString("supper",((Button)findViewById(R.id.supper)).getText().toString());
-        editor.putString("dessert",((Button)findViewById(R.id.dessert)).getText().toString());
-        editor.putString("order",((Button)findViewById(R.id.order)).getText().toString());
+        editor.putString(getString(R.string.breakfast),((Button)findViewById(R.id.breakfast))
+                .getText().toString());
+        editor.putString(getString(R.string.salad),((Button)findViewById(R.id.salad)).getText()
+                .toString());
+        editor.putString(getString(R.string.dinner),((Button)findViewById(R.id.dinner)).getText()
+                .toString());
+        editor.putString(getString(R.string.supper),((Button)findViewById(R.id.supper)).getText()
+                .toString());
+        editor.putString(getString(R.string.dessert),((Button)findViewById(R.id.dessert)).getText()
+                .toString());
+        editor.putString(getString(R.string.order),((Button)findViewById(R.id.order)).getText()
+                .toString());
         editor.apply();
     }
 
