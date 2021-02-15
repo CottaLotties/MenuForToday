@@ -3,6 +3,12 @@
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
 
+    <!-- strings for tutorial_dialog.xml -->
+    <string name="tutorial_dialog_title">Добро пожаловать!</string>
+    <string name="tutorial_tv_1">Начните с создания своей базы блюд</string>
+    <string name="tutorial_tv_2">Нажмите кнопку "Добавить", чтобы добавить новое блюдо</string>
+    <string name="tutorial_tv_3">Нажмите кнопку "Обновить", чтобы получить меню-совет</string>
+
     <!-- strings for activity_main.xml -->
     <string name="breakfast">Завтрак</string>
     <string name="salad">Салат</string>

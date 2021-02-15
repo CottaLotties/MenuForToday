@@ -3,6 +3,12 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
 
+    <!-- strings for tutorial_dialog.xml -->
+    <string name="tutorial_dialog_title">Welcome to the Menu app!</string>
+    <string name="tutorial_tv_1">You should start with creating a database of your dishes</string>
+    <string name="tutorial_tv_2">Press the Add button to add the new dish</string>
+    <string name="tutorial_tv_3">Press the Refresh button to show the menu advice for the day</string>
+
     <!-- strings for activity_main.xml -->
     <string name="breakfast">Breakfast</string>
     <string name="salad">Salad</string>

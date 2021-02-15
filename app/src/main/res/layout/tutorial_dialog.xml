@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml for the tutorial dialog-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_small">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_average"
+        android:text="@string/tutorial_tv_1"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_average"
+            android:clickable="false"
+            android:contentDescription="@string/add_button"
+            android:focusable="false"
+            app:backgroundTint="@color/design_default_color_primary"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="@dimen/margin_average"
+            android:layout_marginLeft="@dimen/margin_average"
+            android:text="@string/tutorial_tv_2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_average"
+            android:clickable="false"
+            android:contentDescription="@string/refresh_button"
+            android:focusable="false"
+            app:backgroundTint="@color/design_default_color_primary"
+            app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="@dimen/margin_average"
+            android:layout_marginLeft="@dimen/margin_average"
+            android:text="@string/tutorial_tv_3" />
+    </LinearLayout>
+</LinearLayout>

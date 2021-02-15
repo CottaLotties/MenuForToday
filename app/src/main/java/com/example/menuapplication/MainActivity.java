@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 import java.util.Random;
@@ -20,12 +20,16 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     DishDao dishDao;
-    SharedPreferences activeAdvice;// SharedPreferences object to save our advice
+    SharedPreferences activeAdvice; // SharedPreferences object to save our advice
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // checking if we should show the tutorial to user
+        checkTutorial();
+
         activeAdvice = getSharedPreferences("AdviceFile", Activity.MODE_PRIVATE);
         showAdvice();
 
@@ -44,6 +48,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.supper).setOnClickListener(this);
         findViewById(R.id.dessert).setOnClickListener(this);
         findViewById(R.id.order).setOnClickListener(this);
+    }
+
+    // method to show the tutorial to user; if the app is opened for the first time, the tutorial
+    // will be shown
+    public void checkTutorial(){
+        // checking if the app is opened for the first time
+        SharedPreferences start = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean previouslyStarted = start.getBoolean("ifFirst", false);
+
+        if (!previouslyStarted){
+            SharedPreferences.Editor edit = start.edit();
+            edit.putBoolean("ifFirst", true);
+            edit.apply();
+
+            // showing tutorial dialog
+            AlertDialog.Builder tutorialDialogBuilder = new AlertDialog.Builder(this);
+            tutorialDialogBuilder.setTitle(getString(R.string.tutorial_dialog_title));
+            View view = getLayoutInflater().inflate(R.layout.tutorial_dialog, null);
+            tutorialDialogBuilder.setView(view);
+            tutorialDialogBuilder.setPositiveButton(getString(R.string.ok), (dialog, which) -> dialog.dismiss());
+
+            AlertDialog tutorialDialog = tutorialDialogBuilder.create();
+            tutorialDialog.show();
+        }
     }
 
     @Override
