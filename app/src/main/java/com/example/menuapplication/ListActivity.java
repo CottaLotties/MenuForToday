@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -25,16 +26,14 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
     DishDao dishDao;
-    List<String> list;
+    AdviceDao adviceDao;
     List<Dish> dishes;
     int type;
-    SharedPreferences activeAdvice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_layout);
-        activeAdvice = getSharedPreferences("AdviceFile", Activity.MODE_PRIVATE);
         refresh(); // show the list of dishes
     }
 
@@ -45,25 +44,41 @@ public class ListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getTypeByDish()); // set the title for the dish list
 
         dishDao = App.getInstance().getDatabase().dishDao();
-        list = dishDao.getByType(type);
         dishes = dishDao.getAllByType(type);
 
         ListView listView = findViewById(R.id.list);
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, list);
+        ArrayAdapter<Dish> listAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, dishes);
         listView.setAdapter(listAdapter);
 
         // listener for the ListView elements; here we choose a dish and come back to menu
         listView.setOnItemClickListener((parent, view, position, id) -> {
+            editAdvice(type, dishes.get(position).id);
+
             Intent toMain = new Intent(ListActivity.this, MainActivity.class);
-            SharedPreferences.Editor editor = activeAdvice.edit();
-            editor.putString(getTypeByDish(),((TextView)view).getText().toString());
-            editor.apply();
             toMain.putExtra("source","ListActivity");
             ListActivity.this.startActivity(toMain);
             onBackPressed();
         });
         registerForContextMenu(listView);
+    }
+
+    public void editAdvice(int type, long dishId){
+        adviceDao = App.getInstance().getDatabase().adviceDao();
+        switch (type){
+            case 2: adviceDao.setSalad(dishId, 0);
+            break;
+            case 3: adviceDao.setDinner(dishId, 0);
+            break;
+            case 4: adviceDao.setSupper(dishId, 0);
+            break;
+            case 5: adviceDao.setDessert(dishId, 0);
+            break;
+            case 6: adviceDao.setOrder(dishId, 0);
+            break;
+            default: adviceDao.setBreakfast(dishId, 0);
+            break;
+        }
     }
 
     // create a small context menu to show when we long click on the dish; we can edit or delete a
@@ -79,26 +94,25 @@ public class ListActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo adapter = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        String dishName = ((TextView)adapter.targetView).getText().toString();
-        long id = dishes.get(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position).id;
+        Dish selectedDish = dishes.get(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position);
 
         if (item.getOrder()==1){
             // edit selected dish
-            showAlertForDishChange(dishName, id);
+            showAlertForDishChange(selectedDish);
         }
 
         else if (item.getOrder()==2){
             // delete the selected dish from the database
-            dishDao.deleteById(id);
+            dishDao.deleteById(selectedDish.id);
             refresh();
-            checkIfChanged(dishName, -1);
+            checkIfDeleted(selectedDish);
         }
 
         return super.onContextItemSelected(item);
     }
 
     // show the dialog for editing the dish
-    public void showAlertForDishChange(String dishName, long id){
+    public void showAlertForDishChange(Dish dish){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         final EditText nameInput = new EditText(this);
@@ -112,13 +126,13 @@ public class ListActivity extends AppCompatActivity {
 
         builder.setTitle(getString(R.string.edit_dish_dialog_title));
         builder.setView(container);
-        nameInput.setText(dishName);
+        nameInput.setText(dish.name);
 
         builder.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             if (!nameInput.getText().toString().equals("")) {
-                dishDao.setDish(nameInput.getText().toString(), id);
+                dishDao.setDish(nameInput.getText().toString(), dish.id);
                 refresh();
-                checkIfChanged(dishName, id);
+                checkIfChanged(dish);
             }
             else{
                 Toast.makeText(getApplicationContext(), getString(R.string.edit_dish_dialog_warning),
@@ -133,16 +147,30 @@ public class ListActivity extends AppCompatActivity {
     }
 
     // the method to check if the chosen dish for the menu was edited or deleted
-    public void checkIfChanged(String dishName, long id){
-        SharedPreferences.Editor editor = activeAdvice.edit();
-        try{
-            String dishType = getTypeByDish();
-            if (activeAdvice.getString(dishType, "breakfast").equals(dishName)) {
-                if (id != -1) editor.putString(dishType, dishDao.getNameById(id));
-                else editor.putString(dishType, "");
-                editor.apply();
+    public void checkIfChanged(Dish dish){
+            if (getDishIdByType(type) == dish.id) {
+                editAdvice(type, dish.id);
             }
-        } catch (Exception e){}
+    }
+
+    public void checkIfDeleted(Dish dish){
+        if (getDishIdByType(type) == dish.id) {
+            editAdvice(type, 0);
+        }
+    }
+
+    public long getDishIdByType(int type){
+        adviceDao = App.getInstance().getDatabase().adviceDao();
+        Advice advice = adviceDao.getAdvice(0);
+        switch (type){
+            case 2: return advice.saladId;
+            case 3: return advice.dinnerId;
+            case 4: return advice.supperId;
+            case 5: return advice.dessertId;
+            case 6: return advice.orderId;
+            case 1:
+            default: return advice.breakfastId;
+        }
     }
 
     // get string dish type by number

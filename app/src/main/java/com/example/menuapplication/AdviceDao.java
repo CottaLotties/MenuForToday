@@ -15,4 +15,22 @@ public interface AdviceDao {
 
     @Query("DELETE FROM Advice WHERE id = :id")
     void removeAdvice(long id);
+
+    @Query("UPDATE Advice SET breakfastId = :dish_id WHERE id = :id")
+    void setBreakfast(long dish_id, long id);
+
+    @Query("UPDATE Advice SET saladId = :dish_id WHERE id = :id")
+    void setSalad(long dish_id, long id);
+
+    @Query("UPDATE Advice SET dinnerId = :dish_id WHERE id = :id")
+    void setDinner(long dish_id, long id);
+
+    @Query("UPDATE Advice SET supperId = :dish_id WHERE id = :id")
+    void setSupper(long dish_id, long id);
+
+    @Query("UPDATE Advice SET dessertId = :dish_id WHERE id = :id")
+    void setDessert(long dish_id, long id);
+
+    @Query("UPDATE Advice SET orderId = :dish_id WHERE id = :id")
+    void setOrder(long dish_id, long id);
 }

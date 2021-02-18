@@ -19,4 +19,10 @@ public class Dish {
     6 - на заказ*/
 
     public String name;
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
