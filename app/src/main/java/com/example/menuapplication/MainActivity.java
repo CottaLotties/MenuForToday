@@ -20,18 +20,19 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     DishDao dishDao;
-    SharedPreferences activeAdvice; // SharedPreferences object to save our advice
+    AdviceDao adviceDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AppDatabase db = App.getInstance().getDatabase();
+        dishDao = db.dishDao();
+        adviceDao = db.adviceDao();
+
         // checking if we should show the tutorial to user
         checkTutorial();
-
-        activeAdvice = getSharedPreferences("AdviceFile", Activity.MODE_PRIVATE);
-        showAdvice();
 
         // adding listener for the button that shows the dish add dialog
         FloatingActionButton add = findViewById(R.id.add);
@@ -77,10 +78,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        saveAdvice(); // save the menu advice when the activity is destroyed
+        //saveAdvice(); // save the menu advice when the activity is destroyed
     }
 
-    public void saveAdvice(){
+    /*public void saveAdvice(){
         // here we save the menu advice in Shared Preferences
         SharedPreferences.Editor editor = activeAdvice.edit();
         editor.putString(getString(R.string.breakfast),((Button)findViewById(R.id.breakfast))
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putString(getString(R.string.order),((Button)findViewById(R.id.order)).getText()
                 .toString());
         editor.apply();
-    }
+    }*/
 
     @Override
     protected void onResume() {
@@ -107,19 +108,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // method to show the last menu advice
     public void showLatestAdvice(){
+        Advice latestAdvice = adviceDao.getAdvice(0);
         try {
-            ((Button) findViewById(R.id.breakfast))
-                    .setText(activeAdvice.getString(getString(R.string.breakfast),""));
-            ((Button) findViewById(R.id.salad))
-                    .setText(activeAdvice.getString(getString(R.string.salad),""));
-            ((Button) findViewById(R.id.dinner))
-                    .setText(activeAdvice.getString(getString(R.string.dinner),""));
-            ((Button) findViewById(R.id.supper))
-                    .setText(activeAdvice.getString(getString(R.string.supper),""));
-            ((Button) findViewById(R.id.dessert))
-                    .setText(activeAdvice.getString(getString(R.string.dessert),""));
-            ((Button) findViewById(R.id.order))
-                    .setText(activeAdvice.getString(getString(R.string.order),""));
+            ((Button) findViewById(R.id.breakfast)).setText(dishDao.getNameById(latestAdvice.breakfastId));
+            ((Button) findViewById(R.id.salad)).setText(dishDao.getNameById(latestAdvice.saladId));
+            ((Button) findViewById(R.id.dinner)).setText(dishDao.getNameById(latestAdvice.dinnerId));
+            ((Button) findViewById(R.id.supper)).setText(dishDao.getNameById(latestAdvice.supperId));
+            ((Button) findViewById(R.id.dessert)).setText(dishDao.getNameById(latestAdvice.dessertId));
+            ((Button) findViewById(R.id.order)).setText(dishDao.getNameById(latestAdvice.orderId));
         } catch(Exception e){}
     }
 
@@ -132,34 +128,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // method that creates the random menu advice
     public void showAdvice(){
-        // !Fix! here we get db and dao, the problem is that we do it in a main thread
-        AppDatabase db = App.getInstance().getDatabase();
-        dishDao = db.dishDao();
-
-        List<String> breakfasts = dishDao.getByType(1);
-        List<String> salads = dishDao.getByType(2);
-        List<String> dinners = dishDao.getByType(3);
-        List<String> suppers = dishDao.getByType(4);
-        List<String> desserts = dishDao.getByType(5);
-        List<String> orders = dishDao.getByType(6);
+        Advice advice = new Advice();
 
         // choose the random dish for every meal type
-        setDish(findViewById(R.id.breakfast), breakfasts);
-        setDish(findViewById(R.id.salad), salads);
-        setDish(findViewById(R.id.dinner), dinners);
-        setDish(findViewById(R.id.supper), suppers);
-        setDish(findViewById(R.id.dessert), desserts);
-        setDish(findViewById(R.id.order), orders);
+        advice.id = 0;
+        advice.breakfastId = setDish(dishDao.getAllByType(1)).id;
+        advice.saladId = setDish(dishDao.getAllByType(2)).id;
+        advice.dinnerId = setDish(dishDao.getAllByType(3)).id;
+        advice.supperId = setDish(dishDao.getAllByType(4)).id;
+        advice.dessertId = setDish(dishDao.getAllByType(5)).id;
+        advice.orderId = setDish(dishDao.getAllByType(6)).id;
+        adviceDao.removeAdvice(0);
+        adviceDao.insertAdvice(advice);
+        showLatestAdvice();
     }
 
     // method that chooses a random dish for chosen meal type
-    public void setDish(TextView v, List<String> arr){
+    public Dish setDish(List<Dish> arr){
         Random rand = new Random();
-        try{
-            v.setText(arr.get(rand.nextInt(arr.size())));
-        } catch (Exception e){
-            v.setText("");
-        }
+        return arr.get(rand.nextInt(arr.size()));
     }
 
     // show the dialog to add a new dish
