@@ -2,6 +2,7 @@ package com.example.menuapplication;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// entity to keep the "saved" current advice
 @Entity
 public class Advice {
 

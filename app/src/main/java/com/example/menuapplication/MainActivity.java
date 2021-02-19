@@ -1,7 +1,6 @@
 package com.example.menuapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
@@ -19,6 +17,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    // dao objects we will need
     DishDao dishDao;
     AdviceDao adviceDao;
 
@@ -76,30 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //saveAdvice(); // save the menu advice when the activity is destroyed
-    }
-
-    /*public void saveAdvice(){
-        // here we save the menu advice in Shared Preferences
-        SharedPreferences.Editor editor = activeAdvice.edit();
-        editor.putString(getString(R.string.breakfast),((Button)findViewById(R.id.breakfast))
-                .getText().toString());
-        editor.putString(getString(R.string.salad),((Button)findViewById(R.id.salad)).getText()
-                .toString());
-        editor.putString(getString(R.string.dinner),((Button)findViewById(R.id.dinner)).getText()
-                .toString());
-        editor.putString(getString(R.string.supper),((Button)findViewById(R.id.supper)).getText()
-                .toString());
-        editor.putString(getString(R.string.dessert),((Button)findViewById(R.id.dessert)).getText()
-                .toString());
-        editor.putString(getString(R.string.order),((Button)findViewById(R.id.order)).getText()
-                .toString());
-        editor.apply();
-    }*/
-
-    @Override
     protected void onResume() {
         super.onResume();
         // show the latest advice when the activity resumes
@@ -122,14 +97,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // method to show the list of dishes for the chosen meal type
     public void showList(int type){
         Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-        listIntent.putExtra("type",type);
+        listIntent.putExtra("type", type);
         MainActivity.this.startActivity(listIntent);
     }
 
     // method that creates the random menu advice
     public void showAdvice(){
         Advice advice = new Advice();
-
         // choose the random dish for every meal type
         advice.id = 0;
         advice.breakfastId = setDish(dishDao.getAllByType(1)).id;
@@ -146,7 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // method that chooses a random dish for chosen meal type
     public Dish setDish(List<Dish> arr){
         Random rand = new Random();
-        return arr.get(rand.nextInt(arr.size()));
+        int elementNum = rand.nextInt(arr.size());
+        if (elementNum>0) return arr.get(rand.nextInt(arr.size()));
+        else return  null;
     }
 
     // show the dialog to add a new dish

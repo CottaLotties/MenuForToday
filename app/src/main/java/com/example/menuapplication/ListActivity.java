@@ -1,10 +1,7 @@
 package com.example.menuapplication;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -15,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,8 +23,9 @@ public class ListActivity extends AppCompatActivity {
 
     DishDao dishDao;
     AdviceDao adviceDao;
-    List<Dish> dishes;
-    int type;
+
+    List<Dish> dishes; // dishes for the list
+    int type; // dish type of the list
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +50,7 @@ public class ListActivity extends AppCompatActivity {
 
         // listener for the ListView elements; here we choose a dish and come back to menu
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            editAdvice(type, dishes.get(position).id);
+            editAdvice(type, dishes.get(position).id); // editing the advice
 
             Intent toMain = new Intent(ListActivity.this, MainActivity.class);
             toMain.putExtra("source","ListActivity");
@@ -63,6 +60,7 @@ public class ListActivity extends AppCompatActivity {
         registerForContextMenu(listView);
     }
 
+    // method to edit the saved advice
     public void editAdvice(int type, long dishId){
         adviceDao = App.getInstance().getDatabase().adviceDao();
         switch (type){
@@ -93,14 +91,12 @@ public class ListActivity extends AppCompatActivity {
     // here we edit or delete the dish
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo adapter = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Dish selectedDish = dishes.get(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position);
 
         if (item.getOrder()==1){
             // edit selected dish
             showAlertForDishChange(selectedDish);
         }
-
         else if (item.getOrder()==2){
             // delete the selected dish from the database
             dishDao.deleteById(selectedDish.id);
@@ -146,19 +142,21 @@ public class ListActivity extends AppCompatActivity {
         editDialog.show();
     }
 
-    // the method to check if the chosen dish for the menu was edited or deleted
+    // the method to check if the chosen dish for the menu was edited
     public void checkIfChanged(Dish dish){
             if (getDishIdByType(type) == dish.id) {
                 editAdvice(type, dish.id);
             }
     }
 
+    // the method to check if the chosen dish for the menu was deleted
     public void checkIfDeleted(Dish dish){
         if (getDishIdByType(type) == dish.id) {
             editAdvice(type, 0);
         }
     }
 
+    // method to get a dish, that was selected for a certain type for the menu
     public long getDishIdByType(int type){
         adviceDao = App.getInstance().getDatabase().adviceDao();
         Advice advice = adviceDao.getAdvice(0);
