@@ -64,17 +64,17 @@ public class ListActivity extends AppCompatActivity {
     public void editAdvice(int type, long dishId){
         adviceDao = App.getInstance().getDatabase().adviceDao();
         switch (type){
-            case 2: adviceDao.setSalad(dishId, 0);
+            case 2: adviceDao.setSalad(dishId);
             break;
-            case 3: adviceDao.setDinner(dishId, 0);
+            case 3: adviceDao.setDinner(dishId);
             break;
-            case 4: adviceDao.setSupper(dishId, 0);
+            case 4: adviceDao.setSupper(dishId);
             break;
-            case 5: adviceDao.setDessert(dishId, 0);
+            case 5: adviceDao.setDessert(dishId);
             break;
-            case 6: adviceDao.setOrder(dishId, 0);
+            case 6: adviceDao.setOrder(dishId);
             break;
-            default: adviceDao.setBreakfast(dishId, 0);
+            default: adviceDao.setBreakfast(dishId);
             break;
         }
     }
@@ -159,7 +159,7 @@ public class ListActivity extends AppCompatActivity {
     // method to get a dish, that was selected for a certain type for the menu
     public long getDishIdByType(int type){
         adviceDao = App.getInstance().getDatabase().adviceDao();
-        Advice advice = adviceDao.getAdvice(0);
+        Advice advice = adviceDao.getAdvice();
         switch (type){
             case 2: return advice.saladId;
             case 3: return advice.dinnerId;

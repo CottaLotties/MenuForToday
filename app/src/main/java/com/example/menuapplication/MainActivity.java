@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // method to show the last menu advice
     public void showLatestAdvice(){
-        Advice latestAdvice = adviceDao.getAdvice(0);
+        Advice latestAdvice = adviceDao.getAdvice();
         try {
             ((Button) findViewById(R.id.breakfast)).setText(dishDao.getNameById(latestAdvice.breakfastId));
             ((Button) findViewById(R.id.salad)).setText(dishDao.getNameById(latestAdvice.saladId));
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         advice.supperId = setDish(dishDao.getAllByType(4)).id;
         advice.dessertId = setDish(dishDao.getAllByType(5)).id;
         advice.orderId = setDish(dishDao.getAllByType(6)).id;
-        adviceDao.removeAdvice(0);
+        adviceDao.removeAdvice();
         adviceDao.insertAdvice(advice);
         showLatestAdvice();
     }
@@ -120,9 +120,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // method that chooses a random dish for chosen meal type
     public Dish setDish(List<Dish> arr){
         Random rand = new Random();
-        int elementNum = rand.nextInt(arr.size());
-        if (elementNum>0) return arr.get(rand.nextInt(arr.size()));
-        else return  null;
+        if (arr.size()>0) return arr.get(rand.nextInt(arr.size()));
+        else return new Dish();
     }
 
     // show the dialog to add a new dish
